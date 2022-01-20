@@ -1,0 +1,120 @@
+<div class="card bg-light mx-auto my-3" style="max-width: 50rem;">
+  <div class="card-header">{{ titulo }}</div>
+  <div class="card-body">
+
+    <form #usuarioForm="ngForm">
+      <div class="form-group row">
+        <div class="col-md-6">
+          <label for="sicCodeType">Tipo de documento:</label>
+          <div class="col-sm-6">
+            <select class="form-select" id="sicCodeType" aria-label="Default select example" [(ngModel)]="usuario.sicCodeType" 
+            name="tipoDocumento" required #tipoDocumento="ngModel">
+              <option disabled selected>Seleccione</option>
+              <option value="Pasaporte">Pasaporte</option>
+              <option value="Cédula de ciudadanía">Cédula de ciudadanía</option>
+              <option value="Cédula de extranjería">Cédula de extranjería</option>
+            </select>
+            <div class="alert alert-danger" *ngIf="tipoDocumento.invalid && (tipoDocumento.dirty || tipoDocumento.touched)">
+                <div *ngIf="tipoDocumento.errors.required">
+                    Por favor complete el campo Tipo de documento
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="sicCode">Identificación:</label>
+          <div class="col-sm-6">
+            <input type="number" class="form-control" id="sicCode" [(ngModel)]="usuario.sicCode" 
+            name="identificacion" required #identificacion="ngModel">
+            <div class="alert alert-danger" *ngIf="identificacion.invalid && (identificacion.dirty || identificacion.touched)">
+                <div *ngIf="identificacion.errors.required">
+                    Por favor complete el campo Identificación
+                </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-6">
+          <label for="firstName">Nombre(s):</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="firstName" [(ngModel)]="usuario.firstName"
+             name="nombre" required #nombre="ngModel">
+            <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                <div *ngIf="nombre.errors.required">
+                    Por favor complete el campo Nombre(s)
+                </div>                
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="lastName">Apellidos:</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="lastName" [(ngModel)]="usuario.lastName" 
+            name="apellido" required #apellido="ngModel">
+            <div class="alert alert-danger" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
+                <div *ngIf="apellido.errors.required">
+                    Por favor complete el campo Apellidos
+                </div>                
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="nationality">Nacionalidad:</label>
+          <div class="col-sm-6">
+            <select class="form-select" id="nationality" [(ngModel)]="usuario.nationality" 
+            name="nacionalidad" required #nacionalidad="ngModel">
+              <option disabled selected>Seleccione</option>
+              <option *ngFor="let nationality of nationalities" [ngValue]="nationality.name">{{nationality.name}}
+              </option>
+            </select>
+            <div class="alert alert-danger" *ngIf="nacionalidad.invalid && (nacionalidad.dirty || nacionalidad.touched)">
+                <div *ngIf="nacionalidad.errors.required">
+                    Por favor complete el campo Nacionalidad
+                </div>                
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="mobilePhone">Celular:</label>
+          <div class="col-sm-6">
+            <input type="number" class="form-control" id="mobilePhone" [(ngModel)]="usuario.mobilePhone" 
+            name="celular" required number #celular="ngModel">
+            <div class="alert alert-danger" *ngIf="celular.invalid && (celular.dirty || celular.touched)">
+                <div *ngIf="celular.errors.required">
+                    Por favor complete el campo Celular
+                </div>  
+                <div *ngIf="email.errors.number">
+                    El Celular que ingreso no es válido!
+                </div>               
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="email">Email:</label>
+          <div class="col-sm-6">
+            <input type="email" class="form-control" id="email" [(ngModel)]="usuario.email" 
+            name="email" required email #email="ngModel">
+            <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+                <div *ngIf="email.errors.required">
+                    Por favor complete el campo Email
+                </div> 
+                <div *ngIf="email.errors.email">
+                    El Email que ingreso no es válido!
+                </div>                  
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="col-sm-6">
+            <button class="btn btn-primary col-md-12 my-4 mx-auto" role="button"[disabled]="!usuarioForm.form.valid" (click)='create()'>Crear</button>
+
+          </div>
+
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>

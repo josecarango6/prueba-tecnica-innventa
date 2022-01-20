@@ -1,0 +1,26 @@
+<div class="card border-primary mb-3" style="max-width: 90rem;">
+    <div class="card-header">Usuarios</div>
+    <div class="card-body text-primary">
+      <h5 class="card-title">Listado de Usuarios</h5>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Documento</th>
+                <th>Nombre completo</th>
+                <th>Nacionalidad</th>
+                <th>Celular</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let subform of users">
+                <td>{{subform.sicCode}}</td>
+                <td>{{subform.firstName}}</td>
+                <td>{{subform.nationality}}</td>
+                <td>{{subform.mobilePhone}}</td>
+                <td>{{subform.email}}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
